@@ -24,7 +24,7 @@ function init(){const main=document.querySelector('main');if(!main)return;const 
  const reopen=()=>{history.replaceState(null,'',location.pathname+location.search+'#studyResetPanel');location.reload();};
  p.querySelector('#studyResetStart').onclick=()=>{const scope=p.querySelector('select').value,label=p.querySelector('select').selectedOptions[0].textContent;ask(label+'을 초기화합니다. 문제·PDF·메모·복습 표시는 유지합니다.',()=>{try{reset(scope);reopen();}catch(error){status.textContent='초기화하지 못했습니다: '+error.message;}});};
  undoButton.onclick=()=>ask('마지막 초기화 직전 기록으로 되돌립니다. 초기화 후 새로 푼 기록은 대체됩니다.',()=>{try{undo();reopen();}catch(error){status.textContent='되돌리지 못했습니다: '+error.message;}});
- if(location.hash==='#studyResetPanel'){p.open=true;status.textContent=undoButton.disabled?'초기화를 되돌렸습니다.':'선택한 기록을 초기화했습니다. 필요하면 마지막 초기화를 되돌릴 수 있습니다.';}
+ if(location.hash==='#studyResetPanel'){p.open=true;status.textContent=undoButton.disabled?'초기화할 기록의 범위를 선택하세요.':'마지막 초기화 직전 기록이 보관되어 있습니다. 필요하면 되돌릴 수 있습니다.';}
 }
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
 })();
