@@ -31,8 +31,9 @@ window.studyFiles={savedPack,storePack,validatePack,registerOffline,compatibleCa
  const key=name==='필기후기_연습시험.html'?'practice':name==='전산_모의고사.html'?'mock':null;
  if(key){const response=await fetch('./'+key+'.template.json');if(!response.ok)throw Error('앱 파일을 불러올 수 없습니다.');html=JSON.parse(await response.text());const safe=v=>JSON.stringify(v).replace(/<\//g,'<\\/');html=html.replace('__PRIVATE_BANK__',()=>safe(pack.banks[key])).replace('__PRIVATE_CATALOG__',()=>safe(pack.catalog)).replace('__PRIVATE_FINGERPRINT__',()=>safe(pack.fingerprint)).replace('__PRIVATE_COMPATIBLE_FINGERPRINTS__',()=>safe(compatibleCatalogs(pack)));
  }else{html=pack.pages[name];if(!html)throw Error('등록되지 않은 페이지입니다.');html=html.replace('<main>','<main><p><a href="index.html">← 내 학습자료 관리</a></p>');}
+ window.studyBookManifest=pack.book_manifest||[];
  window.exportPrivateBank=()=>{const u=URL.createObjectURL(new Blob([JSON.stringify(pack.banks[key],null,2)],{type:'application/json'}));const a=document.createElement('a');a.href=u;a.download=key+'-문제은행.json';a.click();setTimeout(()=>URL.revokeObjectURL(u),2000);};
- html=html.replace(/<\/html>/i,'<script src="pdf-library.js"></script></html>');
+ html=html.replace(/<\/style>/i,'</style><link rel="stylesheet" href="study-ui.css">');html=html.replace(/<\/html>/i,'<script src="pdf-library.js"></script><script src="study-ui.js"></script></html>');
  document.open();document.write(html);document.close();
  }catch(e){document.body.textContent='학습자료를 열지 못했습니다: '+e.message;const a=document.createElement('a');a.href='./index.html';a.textContent=' 자료 관리로 이동';document.body.appendChild(a);}
 })();
