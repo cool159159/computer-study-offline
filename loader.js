@@ -33,7 +33,7 @@ window.studyFiles={savedPack,storePack,validatePack,registerOffline,compatibleCa
  }else{html=pack.pages[name];if(!html)throw Error('등록되지 않은 페이지입니다.');html=html.replace('<main>','<main><p><a href="index.html">← 내 학습자료 관리</a></p>');}
  window.studyBookManifest=pack.book_manifest||[];
  window.exportPrivateBank=()=>{const u=URL.createObjectURL(new Blob([JSON.stringify(pack.banks[key],null,2)],{type:'application/json'}));const a=document.createElement('a');a.href=u;a.download=key+'-문제은행.json';a.click();setTimeout(()=>URL.revokeObjectURL(u),2000);};
- html=html.replace(/<\/style>/i,'</style><link rel="stylesheet" href="study-ui.css">');html=html.replace(/<\/html>/i,'<script src="pdf-library.js"></script><script src="study-ui.js"></script></html>');
+ html=html.replace(/<\/style>/i,'</style><link rel="stylesheet" href="study-ui.css">');html=html.replace(/<\/html>/i,'<script src="pdf-library.js"></script><script src="study-ui.js"></script><script src="study-reset.js"></script></html>');
  document.open();document.write(html);document.close();
  }catch(e){document.body.textContent='학습자료를 열지 못했습니다: '+e.message;const a=document.createElement('a');a.href='./index.html';a.textContent=' 자료 관리로 이동';document.body.appendChild(a);}
 })();
