@@ -13,3 +13,5 @@
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
 
 .study-in-session main>header,.study-in-session main>.warning,.study-in-session main>p:first-child,.study-in-session #mockBadges{display:none}.study-in-session #workspace{margin-top:0}.note.warning summary{font-weight:650;font-size:14px}.note.warning{font-size:13px;margin:14px 0}.study-nav a{min-height:44px;display:inline-flex;align-items:center}
+
+.study-swipe-hint{display:none;font-size:12px;color:var(--muted);margin:10px 0}@media(pointer:coarse){.study-swipe-hint{display:block}}
